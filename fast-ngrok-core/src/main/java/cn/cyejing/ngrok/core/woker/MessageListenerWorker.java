@@ -30,7 +30,7 @@ public class MessageListenerWorker implements Runnable {
         try {
             log.debug("Waiting to read message");
             byte[] hLen = new byte[8];
-            byte[] strByte = new byte[8];
+            byte[] strByte;
             BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
             while (true) {
                 while (bis.available() >= 8) {
@@ -41,13 +41,15 @@ public class MessageListenerWorker implements Runnable {
                 int strLen = ((Long) ByteBuffer
                         .wrap(hLen).getLong())
                         .intValue();
+                if (strLen == 0) {
+                    continue;
+                }
                 log.debug("Reading message with length: {}", strLen);
                 strByte = new byte[strLen];
                 int readCount = 0;
                 while (readCount < strLen) {
                     readCount += bis.read(strByte, readCount, strLen - readCount);
                 }
-//                log.debug("debug message str: {}",new String(strByte,"UTF-8"));
                 JSONObject json = JSON.parseObject(strByte, JSONObject.class);
                 log.debug("Read message: {}", json.toJSONString());
                 if (messageHandler.onMessage(json)) {
