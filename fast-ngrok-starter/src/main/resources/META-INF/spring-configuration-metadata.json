@@ -8,6 +8,12 @@
   ],
   "properties": [
     {
+      "name": "ngrok.enabled",
+      "type": "java.lang.Boolean",
+      "description": "是否打开ngrok",
+      "defaultValue": true
+    },
+    {
       "name": "ngrok.server-address",
       "type": "java.lang.String",
       "description": "服务器地址,如b.cyejing.cn",
