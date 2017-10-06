@@ -52,7 +52,7 @@ public class MessageHandler {
                 this.clientId = clientId;
                 String error = payload.getString("Error");
                 if (StringUtils.isBlank(error)) {
-                    log.info("auth succeed...");
+                    log.debug("auth succeed...");
                     sendReqTunnel();
                     new Thread(new HealthCheckWorker(this)).start();
                 } else {
@@ -76,7 +76,7 @@ public class MessageHandler {
                 //注册代理需要新的线程和连接
                 MessageHandler messageHandler = newSocketAndCopy();
                 messageHandler.sendRegProxy();
-                new Thread(new MessageListenerWorker(messageHandler),"ReqProxy").start();
+                new Thread(new MessageListenerWorker(messageHandler)).start();
                 break;
             case "StartProxy": {
                 String url = payload.getString("Url");
@@ -126,7 +126,7 @@ public class MessageHandler {
             JSONObject payload = new JSONObject();
             String reqId = UUID.randomUUID().toString()
                     .toLowerCase().replace("-", "")
-                    .substring(0, 8);
+                    .substring(0, 16);
             mappingMap.put(reqId, tunnel);
             payload.put("ReqId", reqId);
             payload.put("Protocol", tunnel.getProto());
@@ -152,8 +152,7 @@ public class MessageHandler {
 
 
     public void sendRegProxy() {
-        sendMessage("{\"Type\":\"RegProxy\",\"Payload\":{\"ClientId\":\""
-                + clientId + "\"}}");
+        sendMessage("{\"Type\":\"RegProxy\",\"Payload\":{\"ClientId\":\"" + clientId + "\"}}");
     }
 
     public void sendMessage(String str) {

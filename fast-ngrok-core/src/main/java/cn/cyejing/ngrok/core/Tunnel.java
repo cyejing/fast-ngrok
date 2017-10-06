@@ -30,7 +30,7 @@ public class Tunnel {
     /**
      * tcp远程端口
      */
-    private String remotePort;
+    private int remotePort;
 
     /**
      * 授权
@@ -43,7 +43,7 @@ public class Tunnel {
     }
 
     private Tunnel(int port, String proto, String subDomain, String hostname,
-                   String remotePort, String httpAuth) {
+                   int remotePort, String httpAuth) {
         this.port = port;
         this.proto = proto;
         this.subDomain = subDomain;
@@ -57,7 +57,7 @@ public class Tunnel {
         private String proto;
         private String subDomain;
         private String hostname;
-        private String remotePort;
+        private int remotePort;
         private String httpAuth;
 
         public Tunnel build() {
@@ -90,7 +90,7 @@ public class Tunnel {
             return this;
         }
 
-        public TunnelBuild setRemotePort(String remotePort) {
+        public TunnelBuild setRemotePort(int remotePort) {
             this.remotePort = remotePort;
             return this;
         }
@@ -133,11 +133,11 @@ public class Tunnel {
         this.hostname = hostname;
     }
 
-    public String getRemotePort() {
+    public int getRemotePort() {
         return remotePort;
     }
 
-    public void setRemotePort(String remotePort) {
+    public void setRemotePort(int remotePort) {
         this.remotePort = remotePort;
     }
 

@@ -24,7 +24,7 @@ public class NgrokClient {
 
     public void start() {
         MessageHandler messageHandler = new MessageHandler(socket, socketFactory, this.tunnels);
-        new Thread(new MessageListenerWorker(messageHandler), "MessageListenerWorker").start();
+        new Thread(new MessageListenerWorker(messageHandler)).start();
         messageHandler.sendAuth();
 
     }
