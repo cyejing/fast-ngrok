@@ -1,3 +1,22 @@
-This project is created from a GitLab [Project Template](https://docs.gitlab.com/ce/gitlab-basics/create-project.html)
+### Fast-Ngrok
 
-Additions and changes to the project can be proposed [on the original project](https://gitlab.com/gitlab-org/project-templates/spring)
+ngrok集成spring-boot,随应用启动快速映射内网地址
+
+### 使用方法
+
+添加POM依赖: 
+```
+<dependency>
+    <groupId>cn.cyejing</groupId>
+    <artifactId>fast-ngrok-starter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+### 默认配置
+```
+ngrok.serevr-address=b.cyejing.cn 
+ngrok.server-port=4443
+ngrok.proto=http
+ngrok.subdomain 默认为空,随机子域名
+ngrok.hostname 默认为空,自定义域名
+```

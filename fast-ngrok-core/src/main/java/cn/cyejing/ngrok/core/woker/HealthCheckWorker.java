@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 保持ping维持链接正常
+ * 使用ping维持链接正常
  */
 public class HealthCheckWorker implements Runnable {
     Logger log = LoggerFactory.getLogger(HealthCheckWorker.class);
