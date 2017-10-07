@@ -4,6 +4,7 @@ import cn.cyejing.ngrok.core.woker.HealthCheckWorker;
 import cn.cyejing.ngrok.core.woker.MessageListenerWorker;
 import cn.cyejing.ngrok.core.woker.SocketSwapWorker;
 import com.alibaba.fastjson.JSONObject;
+import jdk.nashorn.internal.runtime.WithObject;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -54,8 +55,9 @@ public class MessageHandler {
                 if (StringUtils.isBlank(error)) {
                     log.debug("auth succeed...");
                     sendReqTunnel();
-                    new Thread(new HealthCheckWorker(this)).start();
+                    WorkerPool.submit(new HealthCheckWorker(this));
                 } else {
+                    WorkerPool.shutdown();
                     log.error("auth failed error: {}", error);
                 }
                 break;
@@ -68,6 +70,7 @@ public class MessageHandler {
                     mappingMap.put(url, mappingMap.get(reqId));
                     log.info("register url: {}", url);
                 } else {
+                    WorkerPool.shutdown();
                     log.error("NewTunnel failed error: {}", error);
                 }
                 break;
@@ -76,15 +79,15 @@ public class MessageHandler {
                 //注册代理需要新的线程和连接
                 MessageHandler messageHandler = newSocketAndCopy();
                 messageHandler.sendRegProxy();
-                new Thread(new MessageListenerWorker(messageHandler)).start();
+                WorkerPool.submit(new MessageListenerWorker(messageHandler));
                 break;
             case "StartProxy": {
                 String url = payload.getString("Url");
                 Tunnel tunnel = mappingMap.get(url);
 
                 Socket locals = new Socket("127.0.0.1", Integer.valueOf(tunnel.getPort()));
-                new Thread(new SocketSwapWorker(this.socket.getInputStream(), locals.getOutputStream())).start();
-                new Thread(new SocketSwapWorker(locals.getInputStream(), this.socket.getOutputStream())).start();
+                WorkerPool.submit(new SocketSwapWorker(this.socket.getInputStream(), locals.getOutputStream()));
+                WorkerPool.submit(new SocketSwapWorker(locals.getInputStream(), this.socket.getOutputStream()));
 
                 return true;
             }

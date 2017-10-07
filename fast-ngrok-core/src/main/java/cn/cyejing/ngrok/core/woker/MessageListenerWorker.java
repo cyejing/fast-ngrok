@@ -36,19 +36,25 @@ public class MessageListenerWorker implements Runnable {
                 while (bis.available() >= 8) {
 
                 }
-                bis.read(hLen);
+                int i = bis.read(hLen);
+                if (i == -1) {
+                    return;
+                }
+
                 ArrayUtils.reverse(hLen);
                 int strLen = ((Long) ByteBuffer
                         .wrap(hLen).getLong())
                         .intValue();
-                if (strLen == 0) {
-                    continue;
-                }
+
                 log.debug("Reading message with length: {}", strLen);
                 strByte = new byte[strLen];
                 int readCount = 0;
                 while (readCount < strLen) {
-                    readCount += bis.read(strByte, readCount, strLen - readCount);
+                    int read = bis.read(strByte, readCount, strLen - readCount);
+                    if (read == -1) {
+                        return;
+                    }
+                    readCount += read;
                 }
                 JSONObject json = JSON.parseObject(strByte, JSONObject.class);
                 log.debug("Read message: {}", json.toJSONString());

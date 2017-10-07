@@ -29,9 +29,8 @@ public class SocketFactory {
             socket.startHandshake();
             return socket;
         } catch (Exception e) {
-            log.error("occurred some exception: {}", e);
+            throw new NgrokClientException("Create connect failed,Please check ngrok server!", e);
         }
-        return null;
     }
 
 

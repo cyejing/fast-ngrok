@@ -18,13 +18,14 @@ public class HealthCheckWorker implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
+        try {
+            while (true) {
                 messageHandler.sendPing();
                 Thread.sleep(30000);
-            } catch (Exception e) {
-                log.error("occurred some exception", e);
             }
+        } catch (Exception e) {
+            log.error("occurred some exception", e);
         }
+
     }
 }

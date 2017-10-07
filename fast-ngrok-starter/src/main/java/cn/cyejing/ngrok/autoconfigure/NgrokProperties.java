@@ -5,11 +5,25 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "ngrok")
 public class NgrokProperties {
 
+    /**
+     * 服务器地址
+     */
     private String serverAddress = "b.cyejing.cn";
+    /**
+     * 服务器端口
+     */
     private int serverPort = 4443;
-
+    /**
+     * 协议
+     */
     private String proto = "http";
+    /**
+     * 自定义子域名
+     */
     private String subdomain;
+    /**
+     * 自定义域名
+     */
     private String hostname;
     private int remotePort;
     private String httpAuth;
