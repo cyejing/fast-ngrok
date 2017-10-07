@@ -13,7 +13,6 @@ public class NgrokClientAutoConfigure {
     @Bean
     public NgrokEmbeddedServletContainerInitializedEventListener
     embeddedServletContainerInitializedEventListener(NgrokProperties ngrokProperties) {
-
         return new NgrokEmbeddedServletContainerInitializedEventListener(ngrokProperties);
     }
 }

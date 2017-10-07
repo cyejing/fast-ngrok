@@ -42,10 +42,7 @@ public class MessageListenerWorker implements Runnable {
                 }
 
                 ArrayUtils.reverse(hLen);
-                int strLen = ((Long) ByteBuffer
-                        .wrap(hLen).getLong())
-                        .intValue();
-
+                int strLen = ((Long) ByteBuffer.wrap(hLen).getLong()).intValue();
                 log.debug("Reading message with length: {}", strLen);
                 strByte = new byte[strLen];
                 int readCount = 0;

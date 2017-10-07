@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.SocketException;
 
 /**
  * 代理消息
@@ -37,10 +37,11 @@ public class SocketSwapWorker implements Runnable {
                     out.flush();
                 }
             }
-            //如果远程连接关闭。。也关闭本地的连接。。避免无限超时现象
-
             out.close();
             in.close();
+        } catch (SocketException e) {
+            //链接关闭,等待下一次访问时重新打开
+            return;
         } catch (Exception e) {
             log.error("Occurred some exception", e);
         }

@@ -4,7 +4,6 @@ import cn.cyejing.ngrok.core.woker.HealthCheckWorker;
 import cn.cyejing.ngrok.core.woker.MessageListenerWorker;
 import cn.cyejing.ngrok.core.woker.SocketSwapWorker;
 import com.alibaba.fastjson.JSONObject;
-import jdk.nashorn.internal.runtime.WithObject;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -170,7 +169,7 @@ public class MessageHandler {
             bos.write(array);
             bos.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("occurred some exception", e);
         }
     }
 

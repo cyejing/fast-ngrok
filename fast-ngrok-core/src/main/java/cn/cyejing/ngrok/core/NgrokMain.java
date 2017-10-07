@@ -2,7 +2,7 @@ package cn.cyejing.ngrok.core;
 
 public class NgrokMain {
 
-    private static final String serverAddress = "b.cye1jing.cn";
+    private static final String serverAddress = "b.cyejing.cn";
     private static final int serverPort = 4443;
 
     public static void main(String[] args) throws Exception {
