@@ -36,6 +36,7 @@
     </developers>
 
     <properties>
+        <fast-ngrok.version>1.0.0</fast-ngrok.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -71,7 +72,7 @@
             <dependency>
                 <groupId>cn.cyejing</groupId>
                 <artifactId>fast-ngrok-core</artifactId>
-                <version>1.0.0</version>
+                <version>${fast-ngrok.version}</version>
             </dependency>
 
             <dependency>
@@ -88,10 +89,13 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
 
             <dependency>
