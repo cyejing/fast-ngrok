@@ -1,6 +1,6 @@
 ### Fast-Ngrok
 
-ngrok集成spring-boot,随应用启动快速映射内网地址
+ngrok集成spring-boot,随应用启动快速映射应用端口
 
 ### 使用方法
 
@@ -17,6 +17,6 @@ ngrok集成spring-boot,随应用启动快速映射内网地址
 ngrok.serevr-address=b.cyejing.cn 
 ngrok.server-port=4443
 ngrok.proto=http
-ngrok.subdomain 默认为空,随机子域名
-ngrok.hostname 默认为空,自定义域名
+ngrok.subdomain=子域名
+ngrok.hostname=自定义域名
 ```

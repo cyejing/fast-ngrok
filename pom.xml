@@ -13,7 +13,7 @@
     </modules>
     <name>fast-ngrok</name>
     <description>
-        ngrok集成spring-boot,随应用启动快速映射内网地址
+        ngrok集成spring-boot,随应用启动快速映射应用端口
     </description>
     <url>https://github.com/cyejing/fast-ngrok</url>
     <licenses>
