@@ -9,7 +9,7 @@ ngrok集成spring-boot,随应用启动快速映射内网地址
 <dependency>
     <groupId>cn.cyejing</groupId>
     <artifactId>fast-ngrok-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 ### 默认配置
