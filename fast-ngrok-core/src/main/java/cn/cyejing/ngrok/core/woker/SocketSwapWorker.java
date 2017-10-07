@@ -25,26 +25,23 @@ public class SocketSwapWorker implements Runnable {
 
     public void run() {
         // 线程运行函数,循环读取返回数据,并发送给相关客户端
-        int readBytes = 0;
-        byte buf[] = new byte[1024];
-        while (true) {
-            try {
-                if (readBytes == -1)
-                    break; // 无数据则退出循环
+        try {
+            int readBytes;
+            byte buf[] = new byte[1024];
+            while (true) {
                 readBytes = in.read(buf, 0, 1024);
+                if (readBytes == -1)
+                    break;
                 if (readBytes > 0) {
                     out.write(buf, 0, readBytes);
                     out.flush();
                 }
-            } catch (Exception e) {
-                break;
-            } // 异常则退出循环
-        }
-        //如果远程连接关闭。。也关闭本地的连接。。避免无限超时现象
-        try {
+            }
+            //如果远程连接关闭。。也关闭本地的连接。。避免无限超时现象
+
             out.close();
             in.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Occurred some exception", e);
         }
     }
