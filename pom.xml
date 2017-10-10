@@ -6,7 +6,7 @@
     <groupId>cn.cyejing</groupId>
     <artifactId>fast-ngrok</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <modules>
         <module>fast-ngrok-core</module>
         <module>fast-ngrok-starter</module>
@@ -26,7 +26,7 @@
         <url>http://github.com/cyejing/fast-ngrok</url>
         <connection>scm:git:git@github.com:cyejing/fast-ngrok.git</connection>
         <developerConnection>scm:git:git@github.com:cyejing/fast-ngrok.git</developerConnection>
-        <tag>1.0.0</tag>
+        <tag>fast-ngrok-1.0.1</tag>
     </scm>
     <developers>
         <developer>
@@ -36,7 +36,7 @@
     </developers>
 
     <properties>
-        <fast-ngrok.version>1.0.1-SNAPSHOT</fast-ngrok.version>
+        <fast-ngrok.version>1.0.1</fast-ngrok.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

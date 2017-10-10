@@ -9,7 +9,7 @@ ngrok集成spring-boot,随应用启动快速映射应用端口
 <dependency>
     <groupId>cn.cyejing</groupId>
     <artifactId>fast-ngrok-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 ### 默认配置
