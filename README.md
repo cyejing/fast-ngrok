@@ -20,3 +20,5 @@ ngrok.proto=http
 ngrok.subdomain=子域名
 ngrok.hostname=自定义域名
 ```
+
+``ngrok``,``spring``,``spring boot``,``spring-boot``,``springboot``,``内网映射``,``内网穿透``,``微信开发``,``接口回调``
